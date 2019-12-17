@@ -26,7 +26,7 @@ class Student
       SELECT * FROM students WHERE name = ? LIMIT 1
     SQL
     binding.pry
-    return = DB[:conn].execute(sql, name)
+    DB[:conn].execute(sql, name)
 
   end
 
