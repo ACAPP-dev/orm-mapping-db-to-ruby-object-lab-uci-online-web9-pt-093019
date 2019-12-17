@@ -13,7 +13,6 @@ class Student
   def self.all
     # retrieve all the rows from the "Students" database
     # remember each row should be a new instance of the Student class
-
     DB[:conn].execute("SELECT * FROM students").map do |row|
       self.new_from_db(row)
     end
@@ -25,7 +24,6 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE name = ? LIMIT 1
     SQL
-    #binding.pry
     DB[:conn].execute(sql, name).map do |row|
       self.new_from_db(row)
     end.first
@@ -35,7 +33,6 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE grade = 9
     SQL
-
     DB[:conn].execute(sql).map do |row|
       self.new_from_db(row)
     end
@@ -45,7 +42,6 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE grade < 12
     SQL
-
     DB[:conn].execute(sql).map do |row|
       self.new_from_db(row)
     end
@@ -55,7 +51,6 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE grade = 10 LIMIT ?
     SQL
-
     DB[:conn].execute(sql, number).map do |row|
       self.new_from_db(row)
     end
@@ -71,7 +66,6 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE grade = ?
     SQL
-
     DB[:conn].execute(sql, grade).map do |row|
       self.new_from_db(row)
     end
@@ -82,7 +76,6 @@ class Student
       INSERT INTO students (name, grade)
       VALUES (?, ?)
     SQL
-
     DB[:conn].execute(sql, self.name, self.grade)
   end
 
@@ -94,7 +87,6 @@ class Student
       grade TEXT
     )
     SQL
-
     DB[:conn].execute(sql)
   end
 
@@ -102,5 +94,4 @@ class Student
     sql = "DROP TABLE IF EXISTS students"
     DB[:conn].execute(sql)
   end
-
 end
