@@ -25,9 +25,9 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE name = ? LIMIT 1
     SQL
-
-    return = DB[:conn].execute(sql, name)
     binding.pry
+    return = DB[:conn].execute(sql, name)
+
   end
 
   def save
